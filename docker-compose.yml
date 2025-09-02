@@ -1,0 +1,22 @@
+version: "3.8" # docker-compose 파일 형식 버전
+
+services:
+  postgres:
+    image: "postgres:16" # 사용할 PostgreSQL 이미지 버전 (최신 안정 버전 추천)
+    container_name: "urihyeonjang-postgres" # 실행될 컨테이너의 이름
+
+    environment:
+      POSTGRES_USER: "postgres" # 데이터베이스 사용자 이름
+      POSTGRES_PASSWORD: "1234" # NestJS에서 사용할 비밀번호
+      POSTGRES_DB: "hyeonjang_dev" # 생성할 데이터베이스 이름
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    restart: always
+
+volumes:
+  postgres-data:
