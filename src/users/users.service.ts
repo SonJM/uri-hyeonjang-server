@@ -13,6 +13,10 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.usersRepository.findOne({ where: { email } });
+  }
+
   async create(
     createUserDto: CreateUserDto,
   ): Promise<Omit<User, 'passwordHash'>> {
@@ -37,7 +41,9 @@ export class UsersService {
     const savedUser = await this.usersRepository.save(user);
 
     // 4. 비밀번호를 제외한 사용자 정보 반환
-    delete savedUser.passwordHash;
-    return savedUser;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash: _, ...userWithoutPassword } = savedUser;
+
+    return userWithoutPassword;
   }
 }
