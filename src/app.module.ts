@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { InvitationsModule } from './invitations/invitations.module';
 import { Invitation } from './invitations/entities/invitation.entity';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { Invitation } from './invitations/entities/invitation.entity';
     AuthModule,
     ProjectsModule,
     InvitationsModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
